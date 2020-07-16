@@ -25,8 +25,7 @@ public class DataSourceBean {
 	
 	
 	public DataSourceBean() {
-		System.out.println("********* DataSourceBean() *********");
-		bitacora.info("Se ha instanciado data source mysql que apunta a BD" + NOMBRE_BD);
+		bitacora.info("Se ha instanciado data source mysql que apunta a BD:" + NOMBRE_BD);
 	}
 	
 	@ConfigurationProperties(prefix = "qtx.datasource")
