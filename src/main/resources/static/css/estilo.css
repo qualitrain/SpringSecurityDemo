@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+body{
+	background-color: hsl(200,80%,90%);
+	padding:1cm;
+}
+a {
+	background-color: white;
+	color:hsl(200,90%,35%);
+	padding: 2mm;
+	border-radius: 5px;
+	border: 1px solid hsl(20,80%,40%);
+	text-decoration: none;
+}
+
+a:hover{
+	background-color: hsl(20,80%,40%);
+	color:white;
+}
+p{
+	margin-bottom: 20px;
+}
