@@ -12,8 +12,9 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class DataSourceSeguridadDefaultSchema {
-	private static final String NOMBRE_BD = "autenticacionBD";
-	private static final String CMD_INIC_BD = "createDatabaseIfNotExist=true";
+	private static final String NOMBRE_BD = "seguridadbd";
+//	private static final String CMD_INIC_BD = "createDatabaseIfNotExist=true";
+	private static final String CMD_INIC_BD = "";
 	private static final String URL_BD = "jdbc:mysql://localhost:3306/" 
 	                                     + NOMBRE_BD 
 	                                     + "?serverTimezone=UTC&" 
@@ -29,7 +30,7 @@ public class DataSourceSeguridadDefaultSchema {
 	}
 	
 	@ConfigurationProperties(prefix = "qtx.datasource.sec")
-	@Bean(name = "bdSeguridadDefault")
+	@Bean(name = "bdSeguridad")
 	public DataSource getDataSource() {
 		 return DataSourceBuilder
 				 	.create()

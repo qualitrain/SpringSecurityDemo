@@ -2,6 +2,8 @@ package mx.com.qtx.config;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -15,30 +17,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SeguridadConfig extends WebSecurityConfigurerAdapter {
-	@Qualifier("bdSeguridadDefault")
+	private static Logger bitacora = LoggerFactory.getLogger(SeguridadConfig.class);
+	
+	@Qualifier("bdSeguridad")
 	@Autowired
 	DataSource dataSource;
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-/*		auth.inMemoryAuthentication()
-			.withUser("alex").password("tekamachalko").roles("AGENTE","ADMIN")
-		    .and()
-		    .withUser("david").password("tekolutla").roles("AGENTE")
-		    .and()
-		    .withUser("tavo").password("tlatelolko").roles("LOGISTICA");
-		    */
+		
+		String queryUsuarios = "SELECT usr_nombre, usr_paswd, usr_habilitado "
+								+ "FROM usuario WHERE usr_nombre = ?";
+		
+		//Los roles deben estar escritos en los registro de la base de datos con el prefijo "ROLE_"
+		//Por ejemplo, ROLE_AGENTE o ROLE_LOGISTICA
+		String queryRoles ="SELECT usr_nombre, aut_nombre "
+						+ "FROM usuario, autoridad "
+						+ "WHERE usr_nombre = ? "
+						+ "AND usr_nombre = aut_nombre_usr";
+		
+		
 		auth.jdbcAuthentication()
 		       .dataSource(dataSource)
-		       .withDefaultSchema()
-		       .withUser(
-		    		   User.withUsername("alex").password("tekamachalko").roles("AGENTE","ADMIN")
-		    		   )
-		       .withUser(
-		    		   User.withUsername("david").password("tekolutla").roles("AGENTE")
-		    		   )
-		       .withUser(
-		    		   User.withUsername("tavo").password("tlatelolko").roles("LOGISTICA")
-		    		   );
+		       .usersByUsernameQuery(queryUsuarios)
+		       .authoritiesByUsernameQuery(queryRoles);
 	}
 	
 	//Es requisito de Spring security tener configurado un codificador de passwords
