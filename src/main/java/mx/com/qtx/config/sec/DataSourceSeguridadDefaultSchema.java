@@ -1,4 +1,4 @@
-package mx.com.qtx.config;
+package mx.com.qtx.config.sec;
 
 import javax.sql.DataSource;
 
@@ -31,6 +31,7 @@ public class DataSourceSeguridadDefaultSchema {
 	
 	@ConfigurationProperties(prefix = "qtx.datasource.sec")
 	@Bean(name = "bdSeguridad")
+	@Primary
 	public DataSource getDataSource() {
 		 return DataSourceBuilder
 				 	.create()

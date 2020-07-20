@@ -30,7 +30,7 @@ public class DataSourceBean {
 	
 	@ConfigurationProperties(prefix = "qtx.datasource")
 	@Bean
-	@Primary
+//	@Primary
 	public DataSource getDataSource() {
 		 return DataSourceBuilder
 				 	.create()
