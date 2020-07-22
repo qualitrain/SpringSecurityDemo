@@ -16,7 +16,10 @@ public class ServicioUserDetail implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = this.gestorDatos.getUsuarioXID(username);
-		return new QtxUserDetails(usuario);
+		if(usuario != null)
+			return new QtxUserDetails(usuario);
+		else
+			throw new UsernameNotFoundException("Usuario no encontrado:" + username);
 	}
 
 }
