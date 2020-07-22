@@ -2,13 +2,27 @@ package mx.com.qtx.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import mx.com.qtx.util.Util;
 
+@Entity
 public class Persona {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="per_id")
 	private long idPersona;
+	@Column(name="per_ap_paterno")
 	private String apPaterno;
+	@Column(name="per_ap_materno")
 	private String apMaterno;
+	@Column(name="per_nombres")
 	private String nombres;
+	@Column(name="per_fec_nac")
 	private Date fecNacimiento;
 	
 	public Persona(long idPersona, String apPaterno, String apMaterno, String nombres) {
@@ -30,6 +44,10 @@ public class Persona {
 
 	public long getIdPersona() {
 		return idPersona;
+	}
+
+	public Persona() {
+		super();
 	}
 
 	public void setIdPersona(long idPersona) {

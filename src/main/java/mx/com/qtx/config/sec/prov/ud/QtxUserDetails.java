@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec;
+package mx.com.qtx.config.sec.prov.ud;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,9 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import mx.com.qtx.config.sec.entidades.Autoridad;
+import mx.com.qtx.config.sec.entidades.Usuario;
 
 public class QtxUserDetails implements UserDetails {
 

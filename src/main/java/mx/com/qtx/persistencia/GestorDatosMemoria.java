@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import mx.com.qtx.entidades.CatValorSimple;
@@ -14,6 +15,7 @@ import mx.com.qtx.servicios.IGestorDatos;
 import mx.com.qtx.util.Util;
 
 @Repository
+//@Primary
 public class GestorDatosMemoria implements IGestorDatos {
 	private static String[] nombres = {"Pedro","Juan", "Jaime", "Marcelo", "Marcela", "Graciela",
 			"María", "Angélica", "Angélica María", "María Angélica", "Juan Manuel", "Alejandro", "Verónica",
@@ -128,14 +130,10 @@ public class GestorDatosMemoria implements IGestorDatos {
 		return setValores;
 	}
 
-
-
 	@Override
 	public Persona leerPersonaXID(long id) {
 		return GestorDatosMemoria.repositorioPersonas.get(id);
 	}
-
-
 
 	@Override
 	public Set<CatValorSimple> leerValoresCatSimpleConInicio(String tipoValor, String inicioValAlfanumerico) {

@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec;
+package mx.com.qtx.config.sec.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class DataSourceBean {
-	private static final String NOMBRE_BD = "restBD";
-	private static final String CMD_INIC_BD = "createDatabaseIfNotExist=true";
+	private static final String NOMBRE_BD = "qtxtestarq";
+	private static final String CMD_INIC_BD = "";
 	private static final String URL_BD = "jdbc:mysql://localhost:3306/" 
 	                                     + NOMBRE_BD 
 	                                     + "?serverTimezone=UTC&" 
@@ -29,7 +29,7 @@ public class DataSourceBean {
 	}
 	
 	@ConfigurationProperties(prefix = "qtx.datasource")
-	@Bean
+	@Bean(name = "bdApp")
 //	@Primary
 	public DataSource getDataSource() {
 		 return DataSourceBuilder

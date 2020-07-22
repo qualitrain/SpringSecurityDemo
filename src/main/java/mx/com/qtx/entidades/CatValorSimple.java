@@ -1,10 +1,24 @@
 package mx.com.qtx.entidades;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class CatValorSimple {
+	@Id
+	@Column(name="cat_id")
 	private long idValorSimple;
+	@Column(name="cat_tipo_valor")
 	private String tipoValor; // Por ejemplo, "nombre","apellido","genero", "cp"
+	@Column(name="cat_valor_alfa")
 	private String valorAlfa; // Por ejemplo, "Pedro", "Carlos", etc. para un tipoValor == "nombre"
+	@Column(name="cat_valor_corto_alfa")
 	private String valorCortoAlfa; //
+
+	public CatValorSimple() {
+		super();
+	}
 
 	public CatValorSimple(long idValorSimple, String tipoValor, String valorAlfa) {
 		super();

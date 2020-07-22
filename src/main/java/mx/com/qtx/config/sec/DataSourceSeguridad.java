@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-public class DataSourceSeguridadDefaultSchema {
+public class DataSourceSeguridad {
 	private static final String NOMBRE_BD = "seguridadbd";
 //	private static final String CMD_INIC_BD = "createDatabaseIfNotExist=true";
 	private static final String CMD_INIC_BD = "";
@@ -22,10 +22,10 @@ public class DataSourceSeguridadDefaultSchema {
 	private static final String USER_BD = "root"; 
 	private static final String PASSWD_BD = "root"; 
 	
-	private static Logger bitacora = LoggerFactory.getLogger(DataSourceSeguridadDefaultSchema.class);
+	private static Logger bitacora = LoggerFactory.getLogger(DataSourceSeguridad.class);
 	
 	
-	public DataSourceSeguridadDefaultSchema() {
+	public DataSourceSeguridad() {
 		bitacora.info("Se ha instanciado data source mysql que apunta a BD:" + NOMBRE_BD);
 	}
 	
