@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec.prov.ud.jpa;
+package mx.com.qtx.sec.persistencia;
 
 import java.util.Properties;
 
@@ -19,13 +19,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories(
-		basePackages = "mx.com.qtx.config.sec.prov.ud.jpa",
+		basePackages = "mx.com.qtx.sec.persistencia",
 		entityManagerFactoryRef = "seguridadEntityManagerFactory",
 		transactionManagerRef = "seguridadTransactionManager"
 )
 public class ConfigRepositoriosJpaSeguridad {
 	private static Logger bitacora = LoggerFactory.getLogger(ConfigRepositoriosJpaSeguridad.class);
-	private static final String[] PACK_SCAN_ENT_JPA= {"mx.com.qtx.config.sec.entidades"};
+	private static final String[] PACK_SCAN_ENT_JPA= {"mx.com.qtx.sec.entidades"};
 	
 	@Qualifier("bdSeguridad")
 	@Autowired

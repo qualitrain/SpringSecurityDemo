@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec.prov.ud.jpa;
+package mx.com.qtx.sec.persistencia;
 
 import java.util.Optional;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import mx.com.qtx.config.sec.entidades.Usuario;
-import mx.com.qtx.config.sec.prov.ud.IGestorDatosSec;
+import mx.com.qtx.sec.entidades.Usuario;
+import mx.com.qtx.sec.servicios.IGestorDatosSec;
 
 @Primary
 @Repository

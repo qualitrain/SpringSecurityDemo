@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec;
+package mx.com.qtx.sec.persistencia;
 
 import javax.sql.DataSource;
 

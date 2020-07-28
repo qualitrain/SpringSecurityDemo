@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec.entidades;
+package mx.com.qtx.sec.entidades;
 
 import java.util.Set;
 

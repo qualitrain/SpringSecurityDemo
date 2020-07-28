@@ -1,6 +1,6 @@
-package mx.com.qtx.config.sec.prov.ud;
+package mx.com.qtx.sec.servicios;
 
-import mx.com.qtx.config.sec.entidades.Usuario;
+import mx.com.qtx.sec.entidades.Usuario;
 
 public interface IGestorDatosSec {
 	public Usuario getUsuarioXID(String nombreUsuario);

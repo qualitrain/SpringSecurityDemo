@@ -1,4 +1,4 @@
-package mx.com.qtx.config.sec.prov.ud;
+package mx.com.qtx.sec.persistencia;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,8 +8,9 @@ import java.util.Set;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import mx.com.qtx.config.sec.entidades.Autoridad;
-import mx.com.qtx.config.sec.entidades.Usuario;
+import mx.com.qtx.sec.entidades.Autoridad;
+import mx.com.qtx.sec.entidades.Usuario;
+import mx.com.qtx.sec.servicios.IGestorDatosSec;
 
 //@Primary
 @Repository
