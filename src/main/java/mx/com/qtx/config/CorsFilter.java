@@ -1,4 +1,4 @@
-package mx.com.qtx.rest;
+package mx.com.qtx.config;
 
 import java.io.IOException;
 
