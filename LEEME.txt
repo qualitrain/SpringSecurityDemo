@@ -1,2 +1,13 @@
 Para probar:
 http://localhost:8068/appQtx/api/catalogos/apellidos/A
+
+
+Para probar autenticación con uso de tokens JWT
+1. Autenticar con POST http://localhost:8068/appQtx/api/autenticacion
+   Body: {"nombreUsuario":"alex", "password":"tekamachalko"}
+   
+   Debe devolver un JSon con la llave codificada en base 64
+   
+2. GET http://localhost:8068/appQtx/api/catalogos/nombres
+Cabecera HTTP: 
+Authorization: Bearer <Llave> devuelta en paso 1

@@ -18,17 +18,17 @@ import mx.com.qtx.sec.entidades.TokenJWT;
 @Path("autenticacion")
 public class AutenticacionRest {
 	@Autowired
-	private IServicioAutenticacion servAutenticacion;
+	private IServicioAutenticacionJWT servAutenticacion;
 	
 	private static Logger bitacora = LoggerFactory.getLogger(AutenticacionRest.class);
 	
 	public AutenticacionRest() {
 		bitacora.info("Se ha instanciado el EndPoint de Autenticación");
 	}
-	public IServicioAutenticacion getServAutenticacion() {
+	public IServicioAutenticacionJWT getServAutenticacion() {
 		return servAutenticacion;
 	}
-	public void setServAutenticacion(IServicioAutenticacion servAutenticacion) {
+	public void setServAutenticacion(IServicioAutenticacionJWT servAutenticacion) {
 		this.servAutenticacion = servAutenticacion;
 	}
 	

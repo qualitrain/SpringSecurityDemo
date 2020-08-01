@@ -20,10 +20,10 @@ import mx.com.qtx.sec.entidades.Autenticacion;
 import mx.com.qtx.sec.entidades.TokenJWT;
 import mx.com.qtx.sec.persistencia.DataSourceSeguridad;
 import mx.com.qtx.sec.rest.IResultadoOperacion;
-import mx.com.qtx.sec.rest.IServicioAutenticacion;
+import mx.com.qtx.sec.rest.IServicioAutenticacionJWT;
 
 @Service
-public class ServicioAutenticacionSS implements IServicioAutenticacion {
+public class ServicioAutenticacionSS implements IServicioAutenticacionJWT {
 	@Autowired
 	private AuthenticationManager autenticadorSS;
 	

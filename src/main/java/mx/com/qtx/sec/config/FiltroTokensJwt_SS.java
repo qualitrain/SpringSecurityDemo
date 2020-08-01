@@ -66,8 +66,11 @@ public class FiltroTokensJwt_SS extends OncePerRequestFilter {
 
 	private void completarAutenticacionSS(String nombreUsuario, HttpServletRequest request) {
 		 SecurityContext ctxSeguridad = SecurityContextHolder.getContext();
-		 if(ctxSeguridad.getAuthentication() != null)
+		 if(ctxSeguridad.getAuthentication() != null) {
+			 bitacora.info("YA HAY un principal en la petición (no debería ser así): "
+			 		+ "nombrePrincipal:" + ctxSeguridad.getAuthentication().getName());
 			 return; // Ya hay un token de Autenticación en el contexto de seguridad
+		 }
 		 
 		 WebAuthenticationDetailsSource wads = new WebAuthenticationDetailsSource();
 		 WebAuthenticationDetails webDetails = wads.buildDetails(request);
