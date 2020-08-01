@@ -65,21 +65,21 @@ public class TokensJwtUtil {
 		              .signWith(llave)
 		              .compact();	
 	}
-	public String extraerUsuario(String token) {
+	public String extraerUsuario(String token) throws Exception{
 		Jws<Claims> contenido = this.extraerJwsClaimsTokenFirmado(token);
 		return contenido.getBody()
 				        .getSubject();
 	}
-	public Date extraerExpiracion(String token) {
+	public Date extraerExpiracion(String token) throws Exception{
 		Jws<Claims> contenido = this.extraerJwsClaimsTokenFirmado(token);
 		return contenido.getBody()
 				        .getExpiration();
 	}
-	public boolean tokenExpirado(String token) {
+	public boolean tokenExpirado(String token) throws Exception{
 		return this.extraerExpiracion(token)
 				      .before(new Date());
 	}
-	public boolean tokenValido(String tokenFirmado, String nombreUsuario) {
+	public boolean tokenValido(String tokenFirmado, String nombreUsuario) throws Exception {
 		String usuarioEnToken = this.extraerUsuario(tokenFirmado);
 		if(!nombreUsuario.equals(usuarioEnToken))
 			return false;
@@ -87,7 +87,7 @@ public class TokensJwtUtil {
 			return false;
 		return true;
 	}
-	private Jws<Claims> extraerJwsClaimsTokenFirmado(String tokenFirmado){
+	private Jws<Claims> extraerJwsClaimsTokenFirmado(String tokenFirmado) throws Exception{
 		//Usar con tokens firmados
 		Jws<Claims> jwsClaims = Jwts.parserBuilder()
 								    .setSigningKey(llave)
@@ -106,11 +106,11 @@ public class TokensJwtUtil {
 		Jwt<Header,Claims> jwtHeaderClaims = this.extraerJwtTokenSinFirmar(tokenSinFirma);
 		return jwtHeaderClaims.getHeader() + " " + jwtHeaderClaims.getBody();
 	}
-	public String extraerContenidoTokenFirmadoStr(String tokenFirmado) {
+	public String extraerContenidoTokenFirmadoStr(String tokenFirmado) throws Exception{
 		Jws<Claims> contenido = this.extraerJwsClaimsTokenFirmado(tokenFirmado);
 		return contenido.getHeader() + " " + contenido.getBody() + " " + contenido.getSignature();
 	}
-	public <R> R extraerClaimEspecifica(String tokenFirmado, Function<Claims, R> getCampo) {
+	public <R> R extraerClaimEspecifica(String tokenFirmado, Function<Claims, R> getCampo) throws Exception{
 		Jws<Claims> contenido = this.extraerJwsClaimsTokenFirmado(tokenFirmado);
 		Claims claims = contenido.getBody();
 		return getCampo.apply(claims);
