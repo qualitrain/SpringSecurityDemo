@@ -28,7 +28,9 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
   
   @Override 
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	  auth.userDetailsService(udsQtx); 
+	  auth.userDetailsService(udsQtx); // Habilita un AuthenticationProvider basado en un DAO 
+	  auth.inMemoryAuthentication()    // Habilita un AuthenticationProvider basado en un UserDetails en memoria
+	            .withUser("pedrito").password("xoconoxtle").roles("LOGISTICA");
   }
   
   
@@ -51,7 +53,7 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
 		  .antMatchers("/info","/css/*","/login").permitAll()
 		  .antMatchers("/admin/**").hasRole("ADMIN")
 		  .antMatchers("/logistica/**").hasAnyRole("LOGISTICA","ADMIN")
-		  .antMatchers("/**","/").authenticated() 
+		  .antMatchers("/**").authenticated() 
   		  .and()
   		.formLogin() 
   		  .and() 
