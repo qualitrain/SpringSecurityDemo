@@ -30,7 +30,11 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	  auth.userDetailsService(udsQtx); // Habilita un AuthenticationProvider basado en un DAO 
 	  auth.inMemoryAuthentication()    // Habilita un AuthenticationProvider basado en un UserDetails en memoria
-	            .withUser("pedrito").password("xoconoxtle").roles("LOGISTICA");
+	            .withUser("pedrito").password("xoconoxtle").roles("LOGISTICA")
+	       .and()
+	            .withUser("solovino").password("solovino").roles("")
+	       .and()
+	            .withUser("benito").password("bodoque").roles("AGENTE");
   }
   
   

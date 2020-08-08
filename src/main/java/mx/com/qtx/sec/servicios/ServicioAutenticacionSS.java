@@ -65,7 +65,9 @@ public class ServicioAutenticacionSS implements IServicioAutenticacionJWT {
 			TokensJwtUtil tokenUtil = new TokensJwtUtil();
 			Map<String,Object> mapClaims = new HashMap<>();
 			mapClaims.put("autoridades", udt.getAuthorities());
+//			mapClaims.put("autoridades", autSS.getAuthorities());
 			String tokenJWT = tokenUtil.generarToken(udt.getUsername(), mapClaims);
+//			String tokenJWT = tokenUtil.generarToken(autSS.getName(), mapClaims);
 			
 			
 			resultadoAutenticacion.setObjResultadoOk(new TokenJWT(tokenJWT));

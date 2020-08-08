@@ -36,8 +36,10 @@ import mx.com.qtx.sec.util.FiltroMonitoreo01;
 	  FiltroMonitoreo01 filtroMonitoreo01;
   
 	  @Override 
-	  protected void configure(AuthenticationManagerBuilder auth) throws
-	  Exception { auth.userDetailsService(udsQtx); }
+	  protected void configure(AuthenticationManagerBuilder auth) throws Exception 
+	  { 
+		  auth.userDetailsService(udsQtx); 
+	  }
 	  
 	  public SeguridadConfig_01Api() { super();
 	  bitacora.info("Instanciando WebSecurityConfigurerAdapter (1)"); }

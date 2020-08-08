@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import mx.com.qtx.rest.CatalogosRest;
-
 @Controller
 public class RaizCtrlr {
 
@@ -32,5 +30,9 @@ public class RaizCtrlr {
 	@GetMapping("/info")
 	public String getVistaInfo(Model modelo) {
 		return "vistaInfo";
+	}
+	@GetMapping("/todos")
+	public String getVistaTodos(Model modelo) {
+		return "vistaUsuariosAutenticados";
 	}
 }
