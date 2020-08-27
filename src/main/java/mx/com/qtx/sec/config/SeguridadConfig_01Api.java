@@ -15,8 +15,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 
 import mx.com.qtx.sec.util.FiltroMonitoreo01;
 
@@ -36,11 +36,14 @@ import mx.com.qtx.sec.util.FiltroMonitoreo01;
 	  FiltroMonitoreo01 filtroMonitoreo01;
   
 	  @Override 
-	  protected void configure(AuthenticationManagerBuilder auth) throws
-	  Exception { auth.userDetailsService(udsQtx); }
+	  protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
+		  auth.userDetailsService(udsQtx); 
+	  }
 	  
-	  public SeguridadConfig_01Api() { super();
-	  bitacora.info("Instanciando WebSecurityConfigurerAdapter (1)"); }
+	  public SeguridadConfig_01Api() { 
+		  super();
+		  bitacora.info("Instanciando WebSecurityConfigurerAdapter (1)"); 
+	  }
 	  
 	  //Es requisito de Spring security tener configurado un codificador de  passwords
 	  
@@ -52,9 +55,9 @@ import mx.com.qtx.sec.util.FiltroMonitoreo01;
 	  @Override 
 	  protected void configure(HttpSecurity http) throws Exception {
 		  http
-//		  	.anonymous().disable() 
-		  	.csrf().disable() 
 		  	.antMatcher("/api/**") // A que URLs atiende ESTA cadena de filtrado
+		  	.csrf().disable()
+		  	.requestCache().disable()
 	 	  	
 	  //Debe describir las reglas de autorización en orden de los más restrictivo a lo menos 
 		  	.authorizeRequests()
@@ -62,16 +65,15 @@ import mx.com.qtx.sec.util.FiltroMonitoreo01;
 		  		.antMatchers("/api/**").hasRole("AGENTE")
 		  		.and()
 		  	.logout().disable()
-		  	.addFilterBefore(filtroJWT, UsernamePasswordAuthenticationFilter.class)
-		  	.addFilterBefore(filtroMonitoreo01, WebAsyncManagerIntegrationFilter.class);
-		  
-		  http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		  	.addFilterBefore(filtroJWT, SecurityContextHolderAwareRequestFilter.class)
+		  	.addFilterBefore(filtroMonitoreo01, WebAsyncManagerIntegrationFilter.class)	  
+		    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	  }
   
-	  @Bean
-	  
-	  @Override public AuthenticationManager authenticationManagerBean() throws
-	  Exception { return super.authenticationManagerBean(); }
+	  @Bean	  
+	  @Override public AuthenticationManager authenticationManagerBean() throws Exception { 
+		    return super.authenticationManagerBean(); 
+	  }
   
   }
  

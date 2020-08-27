@@ -1,19 +1,22 @@
-
-  package mx.com.qtx.sec.config;
+package mx.com.qtx.sec.config;
   
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
-  
-  import mx.com.qtx.sec.util.FiltroMonitoreo02;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
+
+import mx.com.qtx.sec.util.FiltroMonitoreo02;
   
   @EnableWebSecurity 
   @Order(2) 
@@ -57,10 +60,18 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
   		  .and() 
         .logout().invalidateHttpSession(true) 
      	  .and()
-        .addFilterBefore(filtroMonitoreo02, WebAsyncManagerIntegrationFilter.class);
-  
-	  http.sessionManagement().maximumSessions(1); 
+        .addFilterBefore(filtroMonitoreo02, WebAsyncManagerIntegrationFilter.class)
+ 	    .sessionManagement().maximumSessions(1)
+ 	                              .sessionRegistry( sessionRegistry() ); 
 	 }
-  
+	  @Bean
+	  public HttpSessionEventPublisher httpSessionEventPublisher() {
+         return new HttpSessionEventPublisher();
+      }  
+	  @Bean
+	  public SessionRegistry sessionRegistry() {
+	         return new SessionRegistryImpl();
+	  }
+
   }
  
